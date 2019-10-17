@@ -1,3 +1,6 @@
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-button/paper-button.js';
+
 class TodoApp extends HTMLElement {
 
   // WebComponents lifecycle
@@ -26,15 +29,30 @@ class TodoApp extends HTMLElement {
     const template = document.createElement('template');
 
     template.innerHTML = `
+        <style>
+            .success {
+                background-color: forestgreen;
+                color: white;
+            }
+            .error {
+                background-color: red;
+                color: white;
+            }
+        </style>
+        
         <h2>Tasks TO DO</h2>
+        <paper-input label="Task"></paper-input>
+        <paper-button class="success">Save</paper-button>
         <ul>
-            ${this.tasks.map(task => `<li>${task}</li>`)}
+            ${this.tasks.map(task => `
+              <li>${task} <paper-button class="error">Delete</paper-button></li>
+            `)}
         </ul>
       `;
 
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll('>,', '>');
+    this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll(',', '');
   }
 
   // Encapsulation for properties

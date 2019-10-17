@@ -2,7 +2,10 @@
   "name": "frontend-todo",
   "version": "1.0.0",
   "description": "A TODO List created with WebComponents vanilla",
-  "main": "todo-app.js",
+  "main": "src/todo-app.js",
+  "scripts": {
+    "start": "gulp"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alfonsorios96/frontend-todo.git"
@@ -18,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/alfonsorios96/frontend-todo/issues"
   },
-  "homepage": "https://github.com/alfonsorios96/frontend-todo#readme"
+  "homepage": "https://github.com/alfonsorios96/frontend-todo#readme",
+  "dependencies": {
+    "@polymer/paper-input": "^3.0.2",
+    "@polymer/paper-button": "^3.0.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "del": "^5.1.0",
+    "gulp": "^3.0.0",
+    "rollup": "^1.24.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
 }
