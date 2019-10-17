@@ -1,12 +1,28 @@
 <!doctype html>
 <html lang="es">
-  <head>
+<head>
     <title>Lista de tareas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="_utils.js"></script>
     <script defer src="./todo-app.js"></script>
-  </head>
-  <body>
-    <todo-app></todo-app>
-  </body>
+</head>
+<body>
+<todo-app></todo-app>
+<script>
+  const todoApp = document.querySelector('todo-app');
+  todoApp.tasks = [
+    'Create a TODO app with WebComponents Vanilla',
+    'Create a backend with Python/GoLang/Java',
+    'Specify type of database to use and and the implemented schema if it\'s a relational database',
+    'As Backend create a REST API that can be connected with your frontend project',
+    'Include documentation to run the applications',
+    'Use Docker to contain each project',
+    'Have a deployed production version with Firebase',
+    'Unit tests',
+    'Best code practices [All time]',
+    'Nice in-code documentation'
+  ];
+</script>
+</body>
 </html>

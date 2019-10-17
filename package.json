@@ -1,0 +1,22 @@
+{
+  "name": "frontend-todo",
+  "version": "1.0.0",
+  "description": "A TODO List created with WebComponents vanilla",
+  "main": "todo-app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alfonsorios96/frontend-todo.git"
+  },
+  "keywords": [
+    "webcomponents",
+    "vanilla",
+    "todo",
+    "list"
+  ],
+  "author": "Alfonso Ríos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alfonsorios96/frontend-todo/issues"
+  },
+  "homepage": "https://github.com/alfonsorios96/frontend-todo#readme"
+}

@@ -8,8 +8,6 @@ class TodoApp extends HTMLElement {
   }
 
   connectedCallback() {
-    this._tasks = ['tarea 1', 'tarea 2'];
-
     if (!this.shadowRoot) {
       this.attachShadow({mode: 'open'});
       this.render();
@@ -28,7 +26,7 @@ class TodoApp extends HTMLElement {
     const template = document.createElement('template');
 
     template.innerHTML = `
-        <h2>Tareas por hacer</h2>
+        <h2>Tasks TO DO</h2>
         <ul>
             ${this.tasks.map(task => `<li>${task}</li>`)}
         </ul>
@@ -36,9 +34,10 @@ class TodoApp extends HTMLElement {
 
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll('>,', '>');
   }
 
-  // Encapsulation
+  // Encapsulation for properties
 
   /**
    * Tasks for todo-list
