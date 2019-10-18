@@ -6,7 +6,8 @@
     <script src="https://unpkg.com/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="src/_utils.js"></script>
     <script defer type="module">
-      import './dist/bundle.js';
+      import './dist/todo-list.js';
+      import './dist/todo-app.js';
     </script>
 </head>
 <body>
@@ -15,17 +16,37 @@
 <script>
   const todoApp = document.querySelector('todo-app');
   document.addEventListener('WebComponentsReady', () => {
-    todoApp.tasks = [
-      'Create a TODO app with WebComponents Vanilla',
-      'Create a backend with Python/GoLang/Java',
-      'Specify type of database to use and and the implemented schema if it\'s a relational database',
-      'As Backend create a REST API that can be connected with your frontend project',
-      'Include documentation to run the applications',
-      'Use Docker to contain each project',
-      'Have a deployed production version with Firebase',
-      'Unit tests',
-      'Best code practices [All time]',
-      'Nice in-code documentation'
+    todoApp.dashboards = [
+      {
+        name: 'Frontend App',
+        description: 'Create a TODO app with WebComponents Vanilla',
+        tasks: [
+          'Add new task in a TODO list (just with the task name)',
+          'Mark tasks as completed',
+          'Delete a task',
+          'Delete a complete TODO list'
+        ]
+      },
+      {
+        name: 'Backend App',
+        description: 'Create a backend with Python/GoLang/Java',
+        tasks: [
+          'Specify type of database to use and and the implemented schema if it\'s a relational database',
+          'As Backend create a REST API that can be connected with your frontend project',
+          'Include documentation to run the applications'
+        ]
+      },
+      {
+        name: 'Extra points of value',
+        description: 'Nice to have',
+        tasks: [
+          'Use Docker to contain each project',
+          'Have a deployed production version with Firebase',
+          'Unit tests',
+          'Best code practices [All time]',
+          'Nice in-code documentation'
+        ]
+      }
     ];
   });
 </script>

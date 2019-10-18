@@ -7,7 +7,7 @@ const rollup = require('rollup');
 async function build() {
   // see below for details on the options
   const inputOptions = {
-    input: 'src/todo-app.js',
+    input: ['src/todo-app.js', 'src/todo-list.js'],
     plugins: [resolve({
       // pass custom options to the resolve plugin
       customResolveOptions: {
@@ -16,7 +16,7 @@ async function build() {
     })]
   };
   const outputOptions = {
-    file: 'dist/bundle.js',
+    dir: 'dist',
     format: 'cjs'
   };
 
@@ -54,7 +54,7 @@ gulp.task('default', ['rollup'], () => {
   // Serve files from the root of this project
   browserSync.init({
     server: {
-      baseDir: "./"
+      baseDir: './'
     }
   });
 
