@@ -27,21 +27,26 @@ class TodoApp extends HTMLElement {
 
     template.innerHTML = `
         <style>
-
+            .container {
+                display: flex;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
+            }
         </style>
         
-        <h2>Tasks TO DO</h2>
-        
-        ${this.dashboards.map(dashboard => `
-          <h2>${dashboard.name}</h2>
-          <p>${dashboard.description}</p>
-          <todo-list tasks='${JSON.stringify(dashboard.tasks)}'></todo-list>
-        `)}
+        <div class="container">
+          ${this.dashboards.map(dashboard => `
+            <div class="dashboard">
+              <h2>${dashboard.name}</h2>
+              <p>${dashboard.description}</p>
+              <todo-list tasks='${JSON.stringify(dashboard.tasks)}'></todo-list>
+            </div>
+          `)}
+        </div>
       `;
 
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-    // this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll(',', '');
   }
 
   // Encapsulation for properties

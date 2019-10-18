@@ -1,5 +1,8 @@
 import '@polymer/paper-input/paper-input.js';
-import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-button';
+import '@polymer/paper-listbox';
+import '@polymer/paper-item';
+import '@polymer/paper-checkbox';
 
 class TodoList extends HTMLElement {
 
@@ -30,6 +33,9 @@ class TodoList extends HTMLElement {
 
     template.innerHTML = `
         <style>
+            .container {
+                width: 600px;
+            }
             .success {
                 background-color: forestgreen;
                 color: white;
@@ -38,33 +44,67 @@ class TodoList extends HTMLElement {
                 background-color: red;
                 color: white;
             }
+            .list {
+                width: 100%;
+            }
+            .item {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                --paper-item-selected-weight: italic;
+            }
+            .completed {
+                --paper-checkbox-label-checked-color: darkgrey;
+                --paper-checkbox-label: {
+                    text-decoration:line-through;
+                }
+            }
+            .button {
+                width: 20px;
+                height: 12px;
+            }
         </style>
-        
-        <h2>Tasks TO DO</h2>
-        <paper-input label="Task" id="taskInput"></paper-input>
-        <paper-button class="success" id="saveButton">Save</paper-button>
-        <ul>
-            ${this.tasks.map((task, index) => `
-              <li>${task} <paper-button class="error" id="delete-${index}">Delete</paper-button></li>
-            `)}
-        </ul>
+        <div class="container">
+            <paper-input label="Task" id="taskInput"></paper-input>
+            <paper-button class="button success" id="saveButton">Save</paper-button>
+            <paper-listbox class="list">
+                ${this.tasks.map((task, index) => `
+                  <paper-item class="item" id="item-${index}">
+                      <paper-checkbox id="complete-${index}" noink>${task}</paper-checkbox> <paper-button class="button error" id="delete-${index}">Delete</paper-button>
+                  </paper-item>
+                `)}
+            </paper-listbox>
+        </div>
       `;
 
-    this.shadowRoot.innerHTML = '';
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll(',', '');
+    ShadyCSS.prepareTemplate(template, 'my-el');
 
-    this.shadowRoot.querySelector('#saveButton').addEventListener('click', () => {
-      const task = this.shadowRoot.querySelector('#taskInput');
-      this.tasks = [...this.tasks, task.value];
-      task.value = '';
-    });
+    if (this.shadowRoot) {
+      ShadyCSS.styleElement(this);
+      this.shadowRoot.innerHTML = '';
+      this.shadowRoot.appendChild(template.content.cloneNode(true));
+      this.shadowRoot.innerHTML = this.shadowRoot.innerHTML.replaceAll(',', '');
 
-    for (const index in this.tasks) {
-      this.shadowRoot.querySelector(`#delete-${index}`).addEventListener('click', () => {
-        this.tasks.splice(index, 1);
-        this.tasks = [...this.tasks];
+      this.shadowRoot.querySelector('#saveButton').addEventListener('click', () => {
+        const task = this.shadowRoot.querySelector('#taskInput');
+        this.tasks = [...this.tasks, task.value];
+        task.value = '';
       });
+
+      for (const index in this.tasks) {
+        this.shadowRoot.querySelector(`#delete-${index}`).addEventListener('click', () => {
+          this.tasks.splice(index, 1);
+          this.tasks = [...this.tasks];
+        });
+      }
+
+      for (const index in this.tasks) {
+        this.shadowRoot.querySelector(`#complete-${index}`).addEventListener('checked-changed', event => {
+          const checked = event.detail.value;
+          const item = event.currentTarget;
+          checked ? item.classList.add('completed') : item.classList.remove('completed');
+        });
+      }
     }
   }
 

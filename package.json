@@ -23,8 +23,12 @@
   },
   "homepage": "https://github.com/alfonsorios96/frontend-todo#readme",
   "dependencies": {
+    "@polymer/paper-button": "^3.0.0",
+    "@polymer/paper-checkbox": "^3.1.0",
     "@polymer/paper-input": "^3.0.2",
-    "@polymer/paper-button": "^3.0.0"
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
+    "@webcomponents/webcomponentsjs": "^2.3.0"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
