@@ -40,7 +40,7 @@ class TodoList extends HTMLElement {
                 background-color: forestgreen;
                 color: white;
             }
-            .error {
+            .danger {
                 background-color: red;
                 color: white;
             }
@@ -70,7 +70,7 @@ class TodoList extends HTMLElement {
             <paper-listbox class="list">
                 ${this.tasks.map((task, index) => `
                   <paper-item class="item" id="item-${index}">
-                      <paper-checkbox id="complete-${index}" noink>${task}</paper-checkbox> <paper-button class="button error" id="delete-${index}">Delete</paper-button>
+                      <paper-checkbox id="complete-${index}" noink>${task}</paper-checkbox> <paper-button class="button danger" id="delete-${index}">Delete</paper-button>
                   </paper-item>
                 `)}
             </paper-listbox>

@@ -27,18 +27,38 @@ class TodoApp extends HTMLElement {
 
     template.innerHTML = `
         <style>
+            .header {
+              width: 100%;
+              height: 200px;
+              display: flex;
+              justify-content: space-between;
+            }
             .container {
                 display: flex;
                 justify-content: space-evenly;
                 flex-wrap: wrap;
             }
+            .button {
+              width: 20px;
+              height: 12px;
+            }
+            .danger {
+              background-color: red;
+                color: white;
+            }
         </style>
         
         <div class="container">
-          ${this.dashboards.map(dashboard => `
+            <div class="header">
+              <paper-input label="To do list name" id="nameInput"></paper-input>
+              <paper-input label="To do list description" id="descriptionInput"></paper-input>
+              <paper-button class="button success" id="newTodoButtonSave">Save</paper-button>
+            </div> 
+          ${this.dashboards.map((dashboard, index) => `
             <div class="dashboard">
               <h2>${dashboard.name}</h2>
               <p>${dashboard.description}</p>
+              <paper-button class="button danger" id="todoDelete-${index}">Delete</paper-button>
               <todo-list tasks='${JSON.stringify(dashboard.tasks)}'></todo-list>
             </div>
           `)}
@@ -47,6 +67,26 @@ class TodoApp extends HTMLElement {
 
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    this.shadowRoot.querySelector('#newTodoButtonSave').addEventListener('click', () => {
+      const nameInput = this.shadowRoot.querySelector('#nameInput');
+      const descriptionInput = this.shadowRoot.querySelector('#descriptionInput');
+      const newTodoList = {
+        name: nameInput.value,
+        description: descriptionInput.value,
+        tasks: []
+      };
+      this.dashboards = [...this.dashboards, newTodoList];
+      nameInput.value = '';
+      descriptionInput.value = '';
+    });
+
+    for (const index in this.dashboards) {
+      this.shadowRoot.querySelector(`#todoDelete-${index}`).addEventListener('click', () => {
+        this.dashboards.splice(index, 1);
+        this.dashboards = [...this.dashboards];
+      });
+    }
   }
 
   // Encapsulation for properties

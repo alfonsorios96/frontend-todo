@@ -24,7 +24,7 @@ async function build() {
   const bundle = await rollup.rollup(inputOptions);
 
   // generate code
-  const {output} = await bundle.generate(outputOptions);
+  await bundle.generate(outputOptions);
 
   // or write the bundle to disk
   await bundle.write(outputOptions);

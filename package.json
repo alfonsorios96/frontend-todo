@@ -5,7 +5,7 @@
   "main": "src/todo-app.js",
   "scripts": {
     "start": "gulp",
-    "build": "rollup -c rollup.config.js"
+    "serve": "rollup -c rollup.config.js && npx serve"
   },
   "repository": {
     "type": "git",
