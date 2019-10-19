@@ -4,7 +4,8 @@
   "description": "A TODO List created with WebComponents vanilla",
   "main": "src/todo-app.js",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
